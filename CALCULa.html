@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculadora</title>
+</head>
+<body>
+    <div class="calcula"> 
+        <input id="visor" type="number" readonly>
+       
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button data-value="/">/</button>
+
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="*">*</button>
+
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="-">-</button>
+
+        <button data-value="0">0</button>
+        <button data-value="+">+</button>
+        <button data-value=".">.</button>
+        <button data-value="apagar">apagar</button>
+        <button data-value="=">=</button>
+    </div>
+    <style>
+        .calcula {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            gap: 10px;
+            margin: 0 auto;
+        }
+        #visor {
+            grid-column: span 4;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 250px;
+        }
+    </style>
+    <script>
+        let number = document.querySelectorAll('button');
+        let visor = document.getElementById('visor');
+        let apagar = document.getElementById('apagar');
+        let numero1;
+        let numero2;
+        let ope;
+
+        number.forEach(button => {
+            button.addEventListener('click', function() {
+            let valor = button.dataset.value
+
+            if (!isNaN(valor) || valor == ".") {
+                visor.value += valor
+            }
+            if (valor === '+') {
+                numero1 = Number(visor.value);
+                ope = '+';
+                visor.value = '';
+                return;
+            }
+            if (valor === '-') {
+                numero1 = Number(visor.value);
+                ope = '-';
+                visor.value = '';
+                return;
+            }
+            if (valor === '*') {
+                numero1 = Number(visor.value);
+                ope = '*';
+                visor.value = '';
+                return;
+            }
+            if (valor === '/') {
+                numero1 = Number(visor.value);
+                ope = '/';
+                visor.value = '';
+                return;
+            }
+            if (valor === 'apagar') {
+                numero1 = undefined;
+                ope = undefined;
+                visor.value = undefined;
+                return;
+            }
+            if (valor === '=') {
+                numero2 = Number(visor.value);
+
+            if (ope === '+') visor.value = numero1 + numero2;
+            if (ope === '-') visor.value = numero1 - numero2;
+            if (ope === '*') visor.value = numero1 * numero2;
+            if (ope === '/') visor.value = numero1 / numero2;
+
+            return;
+            }
+        });
+    });
+
+
+    </script>
+</body>
+</html>

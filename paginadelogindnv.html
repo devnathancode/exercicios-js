@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagina de login</title>
+</head>
+<body>
+    <h1>pagina de login</h1>
+    <div class="input">
+        <input id="email" type="email" placeholder="digite seu email">
+        <input id="senha" type="password" placeholder='digite sua senha'>
+        <input id="repeat" type="password" placeholder="repita sua senha">
+        <h3 id="msg"></h3>
+        <button id="enviar">enviar</button>
+    </div>
+    <style>
+        .input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+       let btn = document.getElementById('enviar');
+
+btn.addEventListener('click', function () {
+    let senha = document.getElementById('senha').value;
+    let repeat = document.getElementById('repeat').value;
+    let msg = document.getElementById('msg');
+
+    if (!/[A-Z]/.test(senha)) {
+        msg.textContent = 'A senha precisa conter uma letra maiúscula';
+    } else if (!/[a-z]/.test(senha)) {
+        msg.textContent = 'A senha precisa conter uma letra minúscula';
+    } else if (!/[0-9]/.test(senha)) {
+        msg.textContent = 'A senha precisa conter um número';
+    } else if (!/[!@#$%^&*]/.test(senha)) {
+        msg.textContent = 'A senha precisa conter um caractere especial';
+    } else if (senha.length < 8) {
+        msg.textContent = 'A senha precisa conter pelo menos 8 caracteres';
+    } else if (senha !== repeat) {
+        msg.textContent = 'As senhas não são iguais';
+    } else {
+        msg.textContent = 'Login efetuado';
+    }
+});
+    </script>
+</body>
+</html>
