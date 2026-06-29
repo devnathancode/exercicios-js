@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contador de cliques</title>
+</head>
+<body>
+    <h1>contador de cliques</h1>
+    <h2 id="count">0</h2>
+    <button id="clicar">clicar</button>
+     <button id="menos">-1</button> 
+     <button id="zerar">zerar</button>
+
+     <script>
+        let count = document.getElementById('count');
+        let total = Number(localStorage.getItem('clique')) || 0
+        let clicar = document.getElementById('clicar');
+        let menos = document.getElementById('menos');
+        let zerar = document.getElementById('zerar');
+
+        function atualizarcor() {
+              if (total >= 10) {
+                count.style.color = 'green';
+            } else {
+                count.style.color = 'black';
+            }
+        }
+
+
+        clicar.addEventListener('click', function() {
+            if (total === 10) {
+                alert('voce clicou 10 vezes');
+            }
+            total++
+            count.textContent = total
+            localStorage.setItem('clique', total);
+            atualizarcor();
+        })
+        menos.addEventListener('click', function() {
+            total--
+            count.textContent = total
+            atualizarcor();
+        })
+        zerar.addEventListener('click', function() {
+            total = 0
+            count.textContent = total
+            atualizarcor();
+        })
+     </script>
+</body>
+</html>

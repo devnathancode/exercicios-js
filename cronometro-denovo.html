@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cronometro</title>
+</head>
+<body>
+    <h1 id="crono"> 00:00 </h1>
+    <button id="iniciar">iniciar</button>
+    <button id="pausar">pausar</button>
+    <button id="zerar">zerar</button>
+
+    <script>
+        let crono = document.getElementById('crono');
+        let pausar = document.getElementById('pausar');
+        let zerar = document.getElementById('zerar');
+        let seg = Number(localStorage.getItem('tempo')) || 0
+        let intervalo;
+        let iniciar = document.getElementById('iniciar');
+
+        iniciar.addEventListener('click', function() {
+            if (intervalo) {
+                return;
+            }
+            intervalo = setInterval(() => {
+                seg++
+                crono.textContent = seg;
+
+                localStorage.setItem('tempo', seg);
+             }, 1000)
+        })
+        pausar.addEventListener('click', function() {
+            clearInterval(intervalo); {
+            seg = null;
+            intervalo = seg
+            }
+        })
+        zerar.addEventListener('click', function() {
+            intervalo = clearInterval(intervalo); {
+                seg = 0
+                crono.textContent = seg
+            }
+        })
+        
+
+
+    </script>
+</body>
+</html>
