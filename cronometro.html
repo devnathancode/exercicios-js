@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <script>
         let cronome = document.getElementById('crono');
         let iniciar = document.getElementById('iniciar');
-        let seg = 0
+        let seg = Number(localStorage.getItem('tempo')) || 0;
         let pausar = document.getElementById('pausar');
         let zerar = document.getElementById('zerar');
         let intervalo;
@@ -27,6 +27,8 @@
             intervalo = setInterval(function() {
                 seg++
             cronome.textContent = seg
+
+            localStorage.setItem("tempo", seg);
          }, 1000)
         });
 
@@ -41,6 +43,8 @@
             seg = 0
             cronome.textContent = seg
 
+            localStorage.setItem('tempo', seg);
+       
         })
     </script>
 </body>
